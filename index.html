@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Company</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <img class = 'logo' src="img/logo.png" alt="">
+            <div class = 'wrapper-inner'>
+                <div class="offer"> 
+                    <h1 class="offer_title">С помощью нас вы сможете создать то, о чем</h1>
+                    <span class="offer_title_span">желаете!</span>
+                    <p class="offer_text">Наши возможности + опыт позволят вам достичь огромного успеха.
+                        Мы верим в вас! И знаем это на все 100%. Вас не остановить!
+                    </p>
+                    <a href="a" class="offer_bin">Узнать больше...</a>
+                </div>
+                <img class="img1" src="img/header-img.png" alt="picture">
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class = "container2">
+            <div class="offer2">
+                <h1 class="offer_title2">Что Вам необходимо?</h1>
+                <div class="blocks">
+                    <div class="block1">
+                        <img class="img2" src="img/f3.png" alt="picture">
+                        <h2 class="header1">Первый блок</h2>
+                        <p class="p1">loren ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="block2">
+                        <img class="img3" src="img/f4.png" alt="picture">
+                        <h2 class="header2">Второй блок</h2>
+                        <p class="p2">loren ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="block3">
+                        <img class="img4" src="img/f5.png" alt="picture">
+                        <h2 class="header3">Третий блок</h2>
+                        <p class="p3">loren ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container3">
+            <h2 class="offer_title3">Форма заказа товара</h2>
+            <form class="form1" onsubmit="return validateForm()">
+                <span id="first_Check"></span>
+                <label for="first"></label>
+                <input type="text" id="first" name="first" placeholder="Введите ваше имя" oninput="checkFirst()" required>
+
+                <span id="last_Check"></span>
+                <input type="text" id="last" name="last" placeholder="Введите вашу фамилию" oninput="checkLast()" required>
+                
+                <span id="phone_Check"></span>
+                <label for="phone"></label>
+                <input type="tel" id="phone" name="phone" placeholder="Введите ваш телефон" oninput="checkPhone()" required>
+
+                <span id="email_Check"></span>
+                <label for="email"></label>
+                <input type="email" id="email" name="email" placeholder="Введите свой E-mail" oninput="checkEmail()" required>
+
+                <span id="payment_Check"></span>
+                <label for="payment"></label>
+                <select id="payment" name="payment" oninput="checkPayment()" required>
+                    <option value="" disabled selected>Выберите метод оплаты</option>
+                    <option value="Картой при получении">Картой при получении</option>
+                    <option value="Наличные">Наличные</option>
+                    <option value="CБП">CБП</option>
+                </select>
+
+                <span id="product_Check"></span>
+                <input type="text" id="product" name="product" placeholder="Товар" readonly required>
+                <button type="button" class="button-product" onclick="openProductModal()">Выбрать товар</button>
+
+
+                <button class="button" type="button" onclick="outputData()">Отправить заказ!</button>
+            </form>
+
+            <h2 class="offer_title3">Форма заказа обратного звонка</h2>
+            <form class="form1">
+                <label for="username"></label>
+                <input type="text" id="username" name="username" placeholder="Введите ваше имя" required minlength="2" maxlength="50" 
+                pattern="[\p{Script=Cyrillic} \-]+" title="Имя должно содержать только буквы">
+
+                <label for="email"></label>
+                <input type="email" id="email" name="email" placeholder="Введите свой E-mail" required 
+                title="Введите корректный адрес электронной почты">
+
+                <label for="tel"></label>
+                <input type="tel" id="tel" name="tel" placeholder="Введите ваш телефон" required pattern="[87]\d{10}"  
+                title="Телефон должен быть в формате: 7XXXXXXXXXX">
+        
+                <label for="text"></label>
+                <input type="text" id="text" name="text" placeholder="Какая тема Вас интересует?" required minlength="5" maxlength="50" 
+                title="Тема должна содержать от 5 до 50 символов">
+        
+                <button class="button" type="submit">Отправить вопрос!</button>
+            </form>
+        </div>
+        <div class="container4">
+            <p class="copyright">Ⓒ Все на этом сайте защищено</p>
+        </div>
+        <div id="summary-modal" class="modal">
+            <div class="modal-content">
+                <span id="summary"></span>
+                <button class="modal-button" onclick="closeModal()">ОК</button>
+            </div>
+        </div>
+        
+        <div id="product-modal" class="modal">
+            <div class="modal-content">
+                <h2>Выберите товар</h2>
+                <div id="product-list">
+                    <button class="product-item" onclick="selectProduct('iPhone 14')">iPhone 14</button>
+                    <button class="product-item" onclick="selectProduct('Samsung Galaxy S23')">Samsung Galaxy S23</button>
+                    <button class="product-item" onclick="selectProduct('Google Pixel 7')">Google Pixel 7</button>
+                    <button class="product-item" onclick="selectProduct('OnePlus 11')">OnePlus 11</button>
+                    <button class="product-item" onclick="selectProduct('Xiaomi 13 Pro')">Xiaomi 13 Pro</button>
+                    <button class="product-item" onclick="selectProduct('Huawei Pro 60')">Huawei Pro 60</button>
+                </div>
+                <button class="modal-button" onclick="closeProductModal()">Закрыть</button>
+            </div>
+        </div>
+
+    </main>
+    <script src="js\JavaScript.js"></script>
+</body>
+</html>
